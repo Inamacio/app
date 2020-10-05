@@ -53,7 +53,8 @@ The following guides illustrate how to use some features concretely:
 
 ### Developer info
 
-#####Inamácio Alves
+Inamácio Alves
 
-[github](https://github.com/Inamacio)
-[linkedin](https://www.linkedin.com/in/inamacio/)
+> [Github](https://github.com/Inamacio)
+
+> [Linkedin](https://www.linkedin.com/in/inamacio/)

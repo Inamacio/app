@@ -1,0 +1,227 @@
+{
+  "info": {
+    "_postman_id": "844d17fa-bc87-4194-820d-92b7cc41be93",
+    "name": "inter",
+    "description": "Test Bank Inter",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "item": [
+    {
+      "name": "[inter] Find user",
+      "request": {
+        "method": "GET",
+        "header": [
+          {
+            "key": "Authorization",
+            "value": "{{privateKey}}",
+            "type": "text"
+          }
+        ],
+        "url": {
+          "raw": "localhost:8080/user/{{userId}}",
+          "host": [
+            "localhost"
+          ],
+          "port": "8080",
+          "path": [
+            "user",
+            "{{userId}}"
+          ]
+        },
+        "description": "Find user"
+      },
+      "response": []
+    },
+    {
+      "name": "[inter] Create user",
+      "event": [
+        {
+          "listen": "prerequest",
+          "script": {
+            "id": "dfd083f6-8f13-4cea-ba7b-b586d720d2a7",
+            "exec": [
+              "pm.environment.get(\"variable_key\");"
+            ],
+            "type": "text/javascript"
+          }
+        },
+        {
+          "listen": "test",
+          "script": {
+            "id": "9c70580c-e978-4e04-9c2b-7e972271c4e1",
+            "exec": [
+              "var jsonData = JSON.parse(responseBody);",
+              "postman.setEnvironmentVariable(\"userId\", jsonData.id);",
+              "postman.setEnvironmentVariable(\"publicKey\", jsonData.publicKey);",
+              "postman.setEnvironmentVariable(\"privateKey\", jsonData.privateKey);"
+            ],
+            "type": "text/javascript"
+          }
+        }
+      ],
+      "request": {
+        "method": "POST",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n    \"name\": \"inamacio Alves\",\n    \"email\": \"ina@gmail.com\"\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "localhost:8080/user",
+          "host": [
+            "localhost"
+          ],
+          "port": "8080",
+          "path": [
+            "user"
+          ]
+        },
+        "description": "Create user"
+      },
+      "response": []
+    },
+    {
+      "name": "[inter] calculate",
+      "request": {
+        "method": "POST",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n    \"input\": 9875,\n    \"base\": 4\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "http://localhost:8080/calculate",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "8080",
+          "path": [
+            "calculate"
+          ]
+        },
+        "description": "Performs the calculation"
+      },
+      "response": []
+    },
+    {
+      "name": "[inter] calculate by User",
+      "request": {
+        "method": "POST",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n    \"input\": 993,\n    \"base\": 3\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "http://localhost:8080/user/{{userId}}/calculate",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "8080",
+          "path": [
+            "user",
+            "{{userId}}",
+            "calculate"
+          ]
+        },
+        "description": "Calculate By User"
+      },
+      "response": []
+    },
+    {
+      "name": "[inter] get user calculations",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "http://localhost:8080/user/{{userId}}/calculations",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "8080",
+          "path": [
+            "user",
+            "{{userId}}",
+            "calculations"
+          ]
+        },
+        "description": "Calcu by user"
+      },
+      "response": []
+    },
+    {
+      "name": "[inter] delete user",
+      "request": {
+        "method": "DELETE",
+        "header": [],
+        "url": {
+          "raw": "localhost:8080/user/{{userId}}",
+          "host": [
+            "localhost"
+          ],
+          "port": "8080",
+          "path": [
+            "user",
+            "{{userId}}"
+          ]
+        },
+        "description": "Delete user"
+      },
+      "response": []
+    },
+    {
+      "name": "[inter] Edit user",
+      "request": {
+        "method": "PUT",
+        "header": [
+          {
+            "key": "Authorization",
+            "value": "{{publicKey}}",
+            "type": "text"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n    \"name\": \"inamacio Alves de Azevedo\",\n    \"email\": \"ina@gmail.com\"\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "localhost:8080/user/{{userId}}",
+          "host": [
+            "localhost"
+          ],
+          "port": "8080",
+          "path": [
+            "user",
+            "{{userId}}"
+          ]
+        },
+        "description": "Edit user - To edit the user, it is necessary to import a public key in the headers field"
+      },
+      "response": []
+    }
+  ],
+  "protocolProfileBehavior": {}
+}
